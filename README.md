@@ -1,6 +1,8 @@
 # GIPHY
 
-Search engine using GIPHY API
+## Search engine using GIPHY API
+
+live demo: https://avimkabir.github.io/GIPHY/
 
 * Simple API Calls
 
@@ -18,6 +20,6 @@ Search engine using GIPHY API
 
 
 
-live demo: https://avimkabir.github.io/GIPHY/
+
 
 
