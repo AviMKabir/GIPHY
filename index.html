@@ -6,39 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GIPHY Search</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
 
-        <div class="container">
-                <h1>Movie Search</h1>
-            
+    <div class="container">
+
+
+
+
+
+        <div class="jumbotron jumbotron-fluid main-header">
+
+            <div class="container">
+
+
                 <!-- Rendered Buttons will get Dumped Here  -->
                 <div id="buttons-view"></div>
-            
-                <form id="movie-form">
-                  <label for="movie-input">Add a Movie, Yo!</label>
-                  <input type="text" id="movie-input">
-                  <br>
-            
-                  <!-- Button triggers new movie to be added -->
-                  <input id="add-movie" type="submit" value="Add a Movie, Yo!">
-                </form>
 
-    <div id="gifs-appear-here">
+
+
+            </div>
+
         </div>
 
 
+        <div class="container">
+
+            <form id="movie-form">
+                <label for="movie-input">add an anime</label>
+                <input  type="text" id="anime-input">
+                <br>
+
+                <!-- Button triggers new movie to be added -->
+
+                <input class="btn btn-warning" id="add-anime" type="submit" value="submit">
+
+            </form>
+
+        </div>
+
+        <br>
+
+        <div class="card bg-warning text-dark text-center" >
+                <div class="card-header">
+                  GIFs
+                </div>
+                <ul class="list-group list-group-flush">
+                  
+                    <li class="list-group-item">  <div id="gifs-appear-here">
+                        </div> </li>
+                  
+                </ul>
+              </div>
+
+       
+
+
+
+    </div>
 
 
 
 
 
-
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="assets/javascript/script.js"></script>
 
 </body>

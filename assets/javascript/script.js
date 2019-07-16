@@ -1,39 +1,44 @@
 
 
-var movies = ["The Matrix", "The Notebook", "Mr. Nobody", "The Lion King"];
+var animes = ["my hero academia", "hunter x hunter", "death note", "naruto"];
 
 
 
-function displayMovieInfo() {
+function displayAnimeInfo() {
 
 
 
-        // In this case, the "this" keyword refers to the button that was clicked
-        var person = $(this).attr("data-name");
+        // catching the button clicked with this
+        var anime = $(this).attr("data-name");
+        // some variables to hold the editable parts of the link
         var apiKey = "rVACN8PXJGdFJVbnO8UQrFW3sJ6WDwAA";
-        var limit = 13;
+        var limit = 10;
 
-        // Constructing a URL to search Giphy for the name of the person who said the quote
+        // url to search for the name of the anime 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            person + "&api_key=" + apiKey + "&limit=" + limit;
+            anime + "&api_key=" + apiKey + "&limit=" + limit;
 
-        // Performing our AJAX GET request
+        // ajax get
         $.ajax({
             url: queryURL,
             method: "GET"
         })
-            // After the data comes back from the API
+            // get response
             .then(function (response) {
 
+
+                // clear the last divs
                 $(".gifDiv").remove();
+
                 // Storing an array of results in the results variable
                 var results = response.data;
 
                 // Looping over every result item
                 for (var i = 0; i < results.length; i++) {
 
-                    // Only taking action if the photo has an appropriate rating
-                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                    // Only taking action if the photo has an appropriate rating got it from the assignment 
+                    if (results[i].rating !== "r" ) {
+
                         // Creating a div for the gif
                         var gifDiv = $("<div class = 'gifDiv' >");
 
@@ -44,15 +49,15 @@ function displayMovieInfo() {
                         var p = $("<p>").text("Rating: " + rating);
 
                         // Creating an image tag
-                        var personImage = $("<img>");
+                        var animeImage = $("<img>");
 
                         // Giving the image tag an src attribute of a proprty pulled off the
                         // result item
-                        personImage.attr("src", results[i].images.fixed_height.url);
+                        animeImage.attr("src", results[i].images.fixed_height.url);
 
-                        // Appending the paragraph and personImage we created to the "gifDiv" div we created
+                        // Appending the paragraph and animeImage we created to the "gifDiv" div we created
                         gifDiv.append(p);
-                        gifDiv.append(personImage);
+                        gifDiv.append(animeImage);
 
                         // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
                         $("#gifs-appear-here").prepend(gifDiv);
@@ -61,6 +66,7 @@ function displayMovieInfo() {
             });
     
 
+            $("#anime-input").val("");
 
 
 }
@@ -69,42 +75,43 @@ function displayMovieInfo() {
   
 function renderButtons() {
 
-    // Deleting the movies prior to adding new movies
-    // (this is necessary otherwise you will have repeat buttons)
+    // Deleting the animes prior to adding new animes
     $("#buttons-view").empty();
 
-    // Looping through the array of movies
-    for (var i = 0; i < movies.length; i++) {
+    // Looping through the array of animes
+    for (var i = 0; i < animes.length; i++) {
 
       // Then dynamicaly generating buttons for each movie in the array
-      // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-      var a = $("<button>");
-      // Adding a class of movie-btn to our button
-      a.addClass("movie-btn");
+      var a = $("<button class='btn btn-warning' >");
+      // Adding a class of anime-btn to our button
+      a.addClass("anime-btn");
       // Adding a data-attribute
-      a.attr("data-name", movies[i]);
+      a.attr("data-name", animes[i]);
       // Providing the initial button text
-      a.text(movies[i]);
+      a.text(animes[i]);
       // Adding the button to the buttons-view div
       $("#buttons-view").append(a);
     }
+
+    $("#anime-input").val("");
+
   }
 
   // This function handles events where a movie button is clicked
-  $("#add-movie").on("click", function(event) {
+  $("#add-anime").on("click", function(event) {
     event.preventDefault();
     // This line grabs the input from the textbox
-    var movie = $("#movie-input").val().trim();
+    var movie = $("#anime-input").val().trim();
 
     // Adding movie from the textbox to our array
-    movies.push(movie);
+    animes.push(movie);
 
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
   });
 
-  // Adding a click event listener to all elements with a class of "movie-btn"
-  $(document).on("click", ".movie-btn", displayMovieInfo);
+  // Adding a click event listener to all elements with a class of "anime-btn"
+  $(document).on("click", ".anime-btn", displayAnimeInfo);
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
