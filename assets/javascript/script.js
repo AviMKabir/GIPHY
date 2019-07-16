@@ -4,6 +4,7 @@ var animes = ["my hero academia", "hunter x hunter", "death note", "naruto"];
 
 
 
+
 function displayAnimeInfo() {
 
 
