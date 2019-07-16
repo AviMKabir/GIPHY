@@ -50,7 +50,7 @@ function displayAnimeInfo() {
                         var p = $("<p>").text("Rating: " + rating);
 
                         // Creating an image tag
-                        var animeImage = $("<img>");
+                        var animeImage = $("<img class = 'img-fluid' >");
 
                         // Giving the image tag an src attribute of a proprty pulled off the
                         // result item
