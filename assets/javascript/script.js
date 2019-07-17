@@ -41,27 +41,35 @@ function displayAnimeInfo() {
                     if (results[i].rating !== "r" ) {
 
                         // Creating a div for the gif
-                        var gifDiv = $("<div class = 'gifDiv' >");
+                        var showDiv = $("<div class='text-center'>");
 
                         // Storing the result item's rating
                         var rating = results[i].rating;
+
+                        var defaultAnimatedSrc = results[i].images.fixed_height.url;
+                        var staticSrc = results[i].images.fixed_height_still.url;
+                        var showImage = $("<img>");
+
 
                         // Creating a paragraph tag with the result item's rating
                         var p = $("<p>").text("Rating: " + rating);
 
                         // Creating an image tag
-                        var animeImage = $("<img class = 'img-fluid' >");
+                        // var animeImage = $("<img class = 'img-fluid' >");
 
                         // Giving the image tag an src attribute of a proprty pulled off the
                         // result item
-                        animeImage.attr("src", results[i].images.fixed_height.url);
+                        // animeImage.attr("src", results[i].images.fixed_height.url);
+                        showImage.attr("src", staticSrc);
+                        showImage.addClass("animeGiphy");
+                        showImage.attr("data-state", "still");
+                        showImage.attr("data-still", staticSrc);
+                        showImage.attr("data-animate", defaultAnimatedSrc);
+                        
 
-                        // Appending the paragraph and animeImage we created to the "gifDiv" div we created
-                        gifDiv.append(p);
-                        gifDiv.append(animeImage);
-
-                        // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
-                        $("#gifs-appear-here").prepend(gifDiv);
+                        showDiv.append(p);
+                        showDiv.append(showImage);
+                        $("#gifs-appear-here").prepend(showDiv);
                     }
                 }
             });
@@ -84,6 +92,8 @@ function renderButtons() {
 
       // Then dynamicaly generating buttons for each movie in the array
       var a = $("<button class='btn btn-warning' >");
+      a.attr("id", "show");
+
       // Adding a class of anime-btn to our button
       a.addClass("anime-btn");
       // Adding a data-attribute
@@ -113,6 +123,22 @@ function renderButtons() {
 
   // Adding a click event listener to all elements with a class of "anime-btn"
   $(document).on("click", ".anime-btn", displayAnimeInfo);
+
+  $(document).on("click", ".animeGiphy", pausePlayGifs);
+
+  //Function accesses "data-state" attribute and depending on status, changes image source to "data-animate" or "data-still"
+  function pausePlayGifs() {
+  	 var state = $(this).attr("data-state");
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+  }
+}
+
+
 
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
