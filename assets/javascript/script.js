@@ -29,7 +29,9 @@ function displayAnimeInfo() {
 
 
                 // clear the last divs
-                $(".gifDiv").remove();
+                $(".animeGiphy").remove();
+                $("p").remove();
+
 
                 // Storing an array of results in the results variable
                 var results = response.data;
