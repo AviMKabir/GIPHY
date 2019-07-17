@@ -48,7 +48,7 @@ function displayAnimeInfo() {
 
                         var defaultAnimatedSrc = results[i].images.fixed_height.url;
                         var staticSrc = results[i].images.fixed_height_still.url;
-                        var showImage = $("<img>");
+                        var showImage = $("<img class='img-fluid' >");
 
 
                         // Creating a paragraph tag with the result item's rating
